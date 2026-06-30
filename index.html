@@ -145,7 +145,305 @@ text-align:center;
 padding:20px;
 background:#081425;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Govarthini · JARVIS Portfolio</title>
+  <!-- Google Font: Orbitron -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
 
+    body {
+      background: #050b18;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* ===== BACKGROUND: subtle grid + YOUR image (merged) ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      /* GRID (cyan dots) */
+      background:
+        radial-gradient(circle, #00e5ff22 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: move 10s linear infinite;
+    }
+
+    /* YOUR IMAGE as a soft background overlay — merged & elegant */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: 
+        /* dark veil for readability + merge */
+        linear-gradient(135deg, #050b18cc 0%, #0a1a2fbb 100%),
+        /* YOUR IMAGE — replace URL with your own image */
+        url('https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=800&fit=crop&crop=center&q=80') no-repeat center center/cover;
+      background-blend-mode: overlay, normal;
+      opacity: 0.7;          /* subtle, merges with grid */
+      filter: saturate(1.2) contrast(1.05);
+      transition: opacity 0.3s;
+    }
+
+    /* optional: enhance grid animation */
+    @keyframes move {
+      from { transform: translateY(0); }
+      to { transform: translateY(40px); }
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CIRCLE with YOUR IMAGE inside (replaces "JARVIS" text) */
+    .circle {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 4px solid cyan;
+      box-shadow: 0 0 30px cyan;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      animation: pulse 2s infinite;
+      overflow: hidden;      /* keeps image inside circle */
+      background: #081425;   /* fallback */
+      background-image: url('gov.jpeg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      /* subtle tint to blend with cyan vibe */
+      background-blend-mode: overlay;
+      background-color: #0a1a2faa;
+    }
+
+    /* remove old "JARVIS" text – now it's your image */
+    .circle span {
+      display: none;   /* hide text, image takes over */
+    }
+
+    @keyframes pulse {
+      50% {
+        box-shadow: 0 0 60px cyan;
+        transform: scale(1.05);
+      }
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 45px;
+      color: #00e5ff;
+      text-shadow: 0 0 20px #00e5ff66;
+    }
+
+    #typing {
+      font-size: 20px;
+      margin-top: 10px;
+      color: white;
+      text-shadow: 0 0 8px #00e5ff88;
+      min-height: 3rem;
+    }
+
+    button {
+      padding: 15px 40px;
+      background: cyan;
+      border: none;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 30px;
+      font-weight: 700;
+      color: #050b18;
+      transition: 0.3s;
+      box-shadow: 0 0 20px #00e5ff66;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      background: #00e5ff;
+      transform: scale(1.05);
+      box-shadow: 0 0 40px #00e5ff;
+      color: #050b18;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 70px 10%;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(1px);
+    }
+
+    .title {
+      font-size: 35px;
+      color: #00e5ff;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px #00e5ff44;
+    }
+
+    .card {
+      background: #081425dd;
+      padding: 25px;
+      margin: 20px 0;
+      border-left: 4px solid cyan;
+      border-radius: 15px;
+      transition: 0.4s;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 20px #00000055;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px cyan;
+      background: #0b1d36dd;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .skill {
+      padding: 20px;
+      text-align: center;
+      border: 2px solid cyan;
+      border-radius: 12px;
+      transition: 0.4s;
+      background: #081425aa;
+      backdrop-filter: blur(4px);
+      font-weight: 400;
+    }
+
+    .skill:hover {
+      background: cyan;
+      color: black;
+      box-shadow: 0 0 30px cyan;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #081425dd;
+      border-top: 1px solid cyan;
+      backdrop-filter: blur(4px);
+      position: relative;
+      z-index: 2;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; }
+      .circle { width: 170px; height: 170px; }
+      #typing { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <!-- circle now displays YOUR image (background-image in CSS) -->
+    <div class="circle">
+      <!-- no text, image is shown via bg -->
+    </div>
+
+    <h1>Govarthini</h1>
+    <div id="typing"></div>
+
+    <button onclick="location.href='#about'">
+      ⚡ Access Portfolio
+    </button>
+  </header>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="title">✦ ABOUT</div>
+    <div class="card">
+      Hello! I'm <b>Govarthini</b>, a Computer Science Engineering student passionate about App Development, Artificial Intelligence, UI/UX Design, and Creative Technologies.<br><br>
+      My dream is to become an AI Engineer and build futuristic applications inspired by Iron Man's JARVIS.
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section>
+    <div class="title">⚙ SKILLS</div>
+    <div class="skills">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Python</div>
+      <div class="skill">Java</div>
+      <div class="skill">C</div>
+      <div class="skill">AI</div>
+      <div class="skill">UI Design</div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section>
+    <div class="title">📡 PROJECTS</div>
+    <div class="card">🚀 Portfolio Website</div>
+    <div class="card">🤖 AI Assistant</div>
+    <div class="card">🏛 College Management System</div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section>
+    <div class="title">📬 CONTACT</div>
+    <div class="card">
+      <b>Email :</b> skynetgovarthini@gmail.com<br><br>
+      <b>Instagram :</b> itzgov_thi01<br><br>
+      <b>GitHub :</b> github.com/govarthini
+    </div>
+  </section>
+
+  <footer>
+    Designed Like JARVIS • Powered by Govarthini
+  </footer>
+
+  <!-- ===== TYPING SCRIPT ===== -->
+  <script>
+    const text = "Computer Science Student | Web Developer | Future AI Engineer";
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 60);
+      }
+    }
+    type();
+  </script>
+
+</body>
+</html>
 </style>
 
 </head>
